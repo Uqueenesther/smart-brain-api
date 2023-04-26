@@ -16,11 +16,12 @@ const image = require('./controllers/image');
 const db = knex({
     client: 'pg',
     connection: {
-      host : '127.0.0.1',
+      connectionString:"host=dpg-cgqq7o3k9u5es1439bs0-a.oregon-postgres.render.com port=5432 dbname=mydb_30hi user=mydb_30hi_user password=xxxxxxx sslmode=prefer connect_timeout=10",
+      host : 'dpg-cgqq7o3k9u5es1439bs0-a.oregon-postgres.render.com',
       port : 5432,
-      user : 'postgres',
+      user : 'mydb_30hi_user',
       password : '12345',
-      database : 'smart-brain'
+      database : 'mydb_30hi'
     }
   });
 
@@ -35,7 +36,7 @@ app.use(bodyParser.json())
 app.use(cors());
 
 
-app.get('/', (req, res)=> { res.send(database.users) })
+app.get('/', (req, res)=> { res.send(database.mydb_30hi_user) })
 
 app.post('/signin', (req, res) =>{signin.handleSignin (req, res, db, bcrypt)});
 
