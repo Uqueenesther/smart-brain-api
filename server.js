@@ -11,22 +11,8 @@ const profile = require('./controllers/profile');
 const image = require('./controllers/image');
 
 
-// console.log(process.env.CLIENT)
-// const db = knex({
-//     client: process.env.CLIENT,
-//     connection: {
-//       connectionString:"postgres://mydb_30hi_user:nktiJZsN8mkNZ9AGER6wL0NUbnXXyj9x@dpg-cgqq7o3k9u5es1439bs0-a.oregon-postgres.render.com/mydb_30hi",
-//       host : 'dpg-cgqq7o3k9u5es1439bs0-a.oregon-postgres.render.com',
-//       port : 5432,
-//       user : 'mydb_30hi_user',
-//       password : 'nktiJZsN8mkNZ9AGER6wL0NUbnXXyj9x',
-//       database : 'mydb_30hi',
-//       ssl: {
-//         rejectUnauthorized: false,
-//       },
-//     }
-//   });
 
+console.log(process.env.DATABASE)
 const db = knex({
   client: process.env.CLIENT,
   connection: {
