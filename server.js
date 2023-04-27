@@ -1,4 +1,4 @@
-
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt-nodejs');
@@ -11,19 +11,36 @@ const profile = require('./controllers/profile');
 const image = require('./controllers/image');
 
 
-
+// console.log(process.env.CLIENT)
+// const db = knex({
+//     client: process.env.CLIENT,
+//     connection: {
+//       connectionString:"postgres://mydb_30hi_user:nktiJZsN8mkNZ9AGER6wL0NUbnXXyj9x@dpg-cgqq7o3k9u5es1439bs0-a.oregon-postgres.render.com/mydb_30hi",
+//       host : 'dpg-cgqq7o3k9u5es1439bs0-a.oregon-postgres.render.com',
+//       port : 5432,
+//       user : 'mydb_30hi_user',
+//       password : 'nktiJZsN8mkNZ9AGER6wL0NUbnXXyj9x',
+//       database : 'mydb_30hi',
+//       ssl: {
+//         rejectUnauthorized: false,
+//       },
+//     }
+//   });
 
 const db = knex({
-    client: 'pg',
-    connection: {
-      connectionString:"host=dpg-cgqq7o3k9u5es1439bs0-a.oregon-postgres.render.com port=5432 dbname=mydb_30hi user=mydb_30hi_user password=xxxxxxx sslmode=prefer connect_timeout=10",
-      host : 'dpg-cgqq7o3k9u5es1439bs0-a.oregon-postgres.render.com',
-      port : 5432,
-      user : 'mydb_30hi_user',
-      password : '12345',
-      database : 'mydb_30hi'
-    }
-  });
+  client: process.env.CLIENT,
+  connection: {
+    connectionString: process.env.CONNECTION_STRING,
+    host: process.env.HOST,
+    port: process.env.PORT,
+    user: process.env.USER,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE,
+    ssl: {
+              rejectUnauthorized: false,
+            },
+  }
+});
 
   // db.select('*').from ('users').then(data=>{
   //   // console.log(data);
@@ -36,7 +53,7 @@ app.use(bodyParser.json())
 app.use(cors());
 
 
-app.get('/', (req, res)=> { res.send(database.mydb_30hi_user) })
+app.get('/', (req, res)=> { res.send(db.user) })
 
 app.post('/signin', (req, res) =>{signin.handleSignin (req, res, db, bcrypt)});
 
@@ -57,7 +74,7 @@ app.post('/imageurl', (req, res) => {image.handleApiCall(req, res)});
 //     // res = false
 // });
 
-app.listen(3000, ()=>{
-    console.log("app is running on port 3000");
+app.listen(5000, ()=>{
+    console.log("app is running on port 5000");
 })
 
