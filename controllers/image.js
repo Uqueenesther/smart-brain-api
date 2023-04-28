@@ -10,8 +10,8 @@ const app = new Clarifai.App({
    .then(data =>{
        res.json(data);
    })
-//    .catch(err => res.status(400).json('unable to work with API'))
-.catch(err => console.log(err, "API error"))
+   .catch(err => res.status(400).json('unable to work with API'))
+// .catch(err => console.log(err, "API error"))
 
   }
    
