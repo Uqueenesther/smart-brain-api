@@ -1,17 +1,17 @@
 const Clarifai = require('clarifai');
 
 const app = new Clarifai.App({
-    apiKey: '5e739cbf0c864e4abd0cdc2c24cebfc7'
+    apiKey: '800896145bbb4e4ebb73463013fbf4ae'
    });
 
   const handleApiCall = (req, res) => {
     app.models
-   .predict( Clarifai.FACE_DETECT_MODEL, req.body.input)
+.predict( 'face-detection', req.body.input)
    .then(data =>{
        res.json(data);
    })
-   .catch(err => res.status(400).json('unable to work with API'))
-// .catch(err => console.log(err, "API error"))
+//    .catch(err => res.status(400).json('unable to work with API'))
+     .catch(err => console.log(err, "API error"))
 
   }
    

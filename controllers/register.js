@@ -33,8 +33,8 @@ const handleRegister = (req, res, db, bcrypt) =>{
         .catch(trx.rollback)
     })
         
-        // .catch(err=> res.status(400).json('unanble to register'))  
-        .catch(err=>console.log(err))
+        .catch(err=> res.status(400).json('unanble to register'))  
+        // .catch(err=>console.log(err))
     }
 
     module.exports = {
